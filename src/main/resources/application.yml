@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  database: auth-jwt
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://127.0.0.1:3306/${server.database}?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters:
+        wall:
+          config:
+            commentAllow: true
+  flyway:
+    baseline-on-migrate: true
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 5000
+    database: 0
